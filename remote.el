@@ -18,7 +18,7 @@
 		(if (get-buffer host-name)
 			(pop-to-buffer host-name)
 		  (progn (pop-to-buffer (get-buffer-create (generate-new-buffer-name host-name)))
-				 (shell (current-buffer))))))
+				 (eshell (current-buffer))))))
 
 (defun spawn-shell (p_buffer)
   "spawn local shell"
@@ -30,3 +30,10 @@
 			   (pop-to-buffer buffer-name)
 			 (progn (pop-to-buffer (get-buffer-create (generate-new-buffer-name buffer-name)))
 					(shell (current-buffer)))))))
+
+(setq remote-projects '())
+
+(defun remote-project (project)
+  "find file on remote project"
+  (interactive "Sproject: ")
+  (let (default-directory (alist-get project remote-projects))))
